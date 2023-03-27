@@ -1,14 +1,17 @@
 #' Deactivate daRkStudio
 #'
 #' Remove and replace the modified \code{index.htm} with the backup
-#' \code{index.htm.pre-ds} file. Also deletes the \code{darkstudio} directory.
+#' \code{index.htm.pre-ds} file. Also deletes the \code{darkstudio} directory
+#' as well as the \code{inverse.js} script.
 #'
 #' This function does NOT uninstall the daRkStudio package.
 #' To uninstall the darkstudio package, copy and
 #' paste remove.packages('darkstudio') into the console.
 #'
-#' @param file_index character:
+#' @param path character:
 #'   Path to RStudio's \code{index.htm}.
+#' @param restore_index boolean:
+#'   restore initial \code{index.htm} file from a created backup.
 #'
 #' @return Returns \code{TRUE} if the operation is successful.
 #' @export
@@ -25,5 +28,12 @@ deactivate <- function(path = NULL, restore_index = TRUE) {
     ds_dir <- settings_dir(path = path_index, value = TRUE)
     fs::dir_delete(ds_dir)
   }
+
+  path_inversejs <- fs::path(path_index,'js/inverse.js')
+  if (fs::file_exists(path_inversejs)) {
+    fs::file_delete(path_inversejs)
+  }
+
+
   return(TRUE)
 }

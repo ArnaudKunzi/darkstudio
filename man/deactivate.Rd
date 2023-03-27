@@ -7,15 +7,19 @@
 deactivate(path = NULL, restore_index = TRUE)
 }
 \arguments{
-\item{file_index}{character:
+\item{path}{character:
 Path to RStudio's \code{index.htm}.}
+
+\item{restore_index}{boolean:
+restore initial \code{index.htm} file from a created backup.}
 }
 \value{
 Returns \code{TRUE} if the operation is successful.
 }
 \description{
 Remove and replace the modified \code{index.htm} with the backup
-\code{index.htm.pre-ds} file. Also deletes the \code{darkstudio} directory.
+\code{index.htm.pre-ds} file. Also deletes the \code{darkstudio} directory
+as well as the \code{inverse.js} script.
 }
 \details{
 This function does NOT uninstall the daRkStudio package.
