@@ -1,3 +1,38 @@
+# Inverse colors in the figures from the plot tab in Rstudio.
+This is a proof-of-concept fork of darkstudio to evaluate the feasability of inverting colors in the plot tab.  
+  
+  Result:  
+  
+![image](https://user-images.githubusercontent.com/22870774/227967984-2bd91595-d6bf-40e1-96fb-e9937e5ca62e.png)
+  
+  Interactivity:  
+  
+- Left click on the graph toggles Dark/light mode.  
+- Mouse wheel on the graph cycles trough different color inverting gradients.  
+
+  How:  
+  
+At the moment, this is achieved trough injecting the css property `filter: invert()` with javascript inside of the `img#img` element.
+The injection is nested within a mix of promises and MutationObserver to ensure the that the plot tab's iframe and the iframe contents are all loaded.  
+It is a bit messy and could probably benefit to be rewritten with `async await` instead, but well.  
+A less flexible alternative to the use of javascript function for `onwheel` and `onclick` would be to inject a css counter that would increment the invert input.
+   
+  
+This could actually be a standalone feature but I didn't want to re-invent the wheel when an injector already existed.  
+Ultimately, it would be nice to upstream the changes, but I barely know javascript so a clean implementation from my side is unlikely.  
+ 
+# main changes from darkstudio
+- Also injects a `script` tag in index.htm between `</link>` and `</html>`
+- Copies a script in the install: `www/js/invert.js`
+
+# installing the fork  
+
+`remotes::install_github("ArnaudKunzi/darkstudio")`
+  
+    
+  
+The content below is the content from the original darstudio `README.md`
+
 # darkstudio is a package!
 darkstudio can now be installed as an R package. Instructions are below.
 
