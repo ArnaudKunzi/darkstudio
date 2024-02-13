@@ -127,7 +127,7 @@ index <- list(
 
     for (line in seq_along(file)) {
 
-      if (file[[line_current]] == "</html>") {
+      if (file[[line]] == "</html>") {
 
         inc <- length(c(.ds_link,.ds_script))
         line_current  <- line
